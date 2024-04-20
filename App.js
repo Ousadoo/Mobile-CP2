@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Add from './src/telas/Add.jsx';
+import List from './src/telas/List.jsx';
+import Delete from './src/telas/Delete.jsx';
+import Autor from './src/telas/Autor.jsx';
+import { UserContext } from './src/context/UserContext.jsx'; 
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const pessoa1 = {
+  nome: 'Pedro Gomes Fernandes',
+  rm: 'RM551480',
+  foto: require('./assets/foto_eu.png')
+};
+
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <UserContext.Provider value={{ pessoa1}}> 
+        <Stack.Navigator initialRouteName="Adicionar Celular">
+          <Stack.Screen name="Add" component={Add} />
+          <Stack.Screen name="List" component={List} />
+          <Stack.Screen name="Delete" component={Delete} />
+          <Stack.Screen name="Autor" component={Autor} />
+        </Stack.Navigator>
+      </UserContext.Provider> 
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
