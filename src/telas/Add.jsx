@@ -30,6 +30,7 @@ const Add = ({ navigation }) => {
   }
 
   return (
+
         <View style={styles.formContainer}>
             <Text style={{ color: 'white' }}>CADASTRO DE CELULARES</Text>
 
